@@ -1,0 +1,142 @@
+
+
+/* Custom fonts */
+@import url('https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
+
+
+body {
+    background-color: #000; 
+}
+
+.title {
+    background-color: transparent;
+    width: 50%;
+    margin-left: 45%;
+	font-family:'Hina Mincho', serif;
+    font-size: 125px;
+    font-style:italic;
+	padding-left: -25px;
+    color: #fff;
+    position: absolute;
+}
+
+.quote {
+    font-family: Helvetica Neue;
+    font-size: 13px;
+	letter-spacing: 1px;
+	font-weight: lighter;
+    color: #fff;
+	padding-top: 50px;
+	margin-left:40%;
+	top: 150px;
+	background-color: transparent;
+	position: absolute;
+	
+		
+}
+	
+.quote2 {
+	
+	font-family: Helvetica Neue;
+    font-size: 13px;
+	letter-spacing: 1px;
+    text-align: center;
+	font-weight: lighter;
+    color: #fff;
+	padding-top: 55px;
+	margin-left:40%;
+	top: 159px;
+	background-color: transparent;
+	position: absolute;	
+		
+	}
+	
+b {
+    font-family:'Hina Mincho', serif;
+    font-size: 125px;
+    font-style:italic;
+	font-weight: none;
+    color: #fff;
+	padding-top: 25px;
+	background-color: transparent;
+	position: absolute;
+}
+	
+
+button {
+    background-color: transparent;
+    width: 75px;
+	padding: 4px;
+    margin-left: 45%;
+	font-family:'Hina Mincho', serif;
+	letter-spacing: 2px;
+    font-size: 15px;
+	border: 1px solid #fff;
+    color: #fff;
+    position: absolute;
+}
+	
+.buttonspace {
+    background-color: transparent;
+    width: 250px;
+	height: 100px;
+    margin-left: 37%;
+	top: 60%;
+    position: absolute;
+}
+	
+.music {
+    background-color: transparent;
+    width: 55px;
+	height: 40px;
+    margin-left: 2%;
+	top: 94%;
+    position: absolute;
+}
+
+#screen-2 {
+    display: none;
+}
+
+.card {
+    position: absolute;
+    margin-left: 43.4%;
+    top: 40%;
+    width: 105px;
+    height: 135px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    background-color: transparent;
+}
+
+.card-value-suit {
+    display: inline-block;
+    position: absolute;
+    color: #fff;
+}
+
+.card-value-suit.bot {
+    transform: rotate(180deg);
+    color: #fff;
+    bottom: 5px;
+    right: 5px;
+}
+
+.card-suit {
+    font-size: 50px;
+    position: absolute;
+    color: #fff;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 25%;
+}
+
+.card.spades,
+.card.clubs {
+    color: #fff;
+}
+.cards.diamonds,
+.cards.heart {
+    color: #fff;
+}
