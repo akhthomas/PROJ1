@@ -1,7 +1,7 @@
 **( this readme is currently under construction )**
 
 ## Important Links
-Personal GitHub for Project 1 : //
+Personal GitHub for Project 1 : https://github.com/akhthomas/PROJ1
 
 **Wireframe + Pseudo Code on Whimsical -**
 
