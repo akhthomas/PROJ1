@@ -20,8 +20,36 @@ function showHide() {
 const value = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 const suits = ["spades", "diamonds", "clubs", "hearts"];
 
-const winCondition = 21;
+//const winCondition = 21; **** LOSE / WIN LOGIC ****
 
+function endGame() {
+    updateScores();
+    if (gameEnd) {
+        while (
+            voidScore < playerScore &&
+            playerScore <= 21 &&
+            voidScore <= 21
+        ) {
+voidCards.push(nextCard());
+updateScores();
+    }
+}
+
+if (playerScore > 21) {
+    playerWins = false;
+    gameEnd = true;
+}   else if (voidScore > 21) {
+    playerWins = true;
+    gameEnd = true; 
+}   else if (gameEnd) {
+    if (playerScore > voidScore) {
+        playerWins = true; 
+    } else { 
+        playerWins = false;
+    }
+
+    }
+}
 
 
 
