@@ -34,6 +34,7 @@ class Game {
         deck: deckCompiler().sort((a, b) => 0.5 - Math.random()),
         player: [],
         dealer: [],
+        drawOptions : false,
         playerDrawsCard2 : false
     };
 
@@ -64,8 +65,25 @@ class Game {
     }
     drawOptions() {
         if (!this.state.drawOptions) {
-            const option = document.getElementById('button-space-2');
-            buttonspace2.style.display = 'block';
+            const options = document.getElementById('buttonspace2');
+            options.style.display = 'block';
+            this.state.drawOptions = true;
+
+            const voidSpace = document.getElementById('voidspace');
+            voidSpace.style.display = 'flex';
+
+            const voidCard1 = document.getElementById('cardv1');
+            const card = this.state.deck.pop();
+            this.state.dealer.push(card);
+            voidCard1.innerText = card.value + " " + card.suit;
+
+            const voidCard2 = document.getElementById('cardv2');
+            const enemyHand = this.state.deck.pop();
+            this.state.dealer.push(enemyHand);
+            voidCard2.innerText = card.value + " " + card.suit;
+
+            
+
         }
     }   
 }

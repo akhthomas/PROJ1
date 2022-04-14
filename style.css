@@ -85,12 +85,12 @@ button {
     position: absolute;
 }
 
-.buttonspace2 {
+#buttonspace2 {
     text-align: center;
     margin-top: 2%;
     display: none;
 }
-.buttonspace2 button {
+#buttonspace2 button {
     background-color: transparent;
     margin-left: 1%;
 	top: 60%;
@@ -133,33 +133,9 @@ button {
     display: none;
 }
 
-.card-value-suit {
-    display: inline-block;
-    position: absolute;
-    color: #fff;
-}
+#voidspace {
+    display: none;
+    margin-left: 42%;
+    margin-top: -10%;
 
-.card-value-suit.bot {
-    transform: rotate(180deg);
-    color: #fff;
-    bottom: 5px;
-    right: 5px;
-}
-
-.card-suit {
-    font-size: 50px;
-    position: absolute;
-    color: #fff;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 25%;
-}
-
-.card.spades,
-.card.clubs {
-    color: #fff;
-}
-.cards.diamonds,
-.cards.heart {
-    color: #fff;
 }
