@@ -19,32 +19,45 @@ function showHide() {
 // **** BUTTONS ****
 let hitButton = document.getElementById('hit-button');
 let surrenderButton = document.getElementById('surrender-button');
+let cardX = document.getElementById('card1');
 
-// **** CONSTANTS ****
-const value = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-const suits = ["spades", "diamonds", "clubs", "hearts"];
 
 // **** DECK FUNCTION ****
-function deckCompiler()
+function deckCompiler() {
+    const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+    const suits = ["spades", "diamonds", "clubs", "hearts"];
 
+    const cards = [];
+    for (let s = 0; s < suits.length; s++) {
+    for (let v = 0; v < values.length; v++) {
+    const value = values[v];
+    const suit = suits[s];
+    cards.push({ value, suit });
+    }
+}
+return cards;
+}
 
+let deck1 = deckCompiler();
+deck1 = deck1.sort((a, b) => 0.5 - Math.random());
 
+const player = [];
+const dealer = [];
+
+const card1 = deck1.pop();
+player.push(card1);
+cardX.innerText = card1.value+card1.suit;
 
 
 // **** LOSE / WIN LOGIC ****
-function getScores() {
-
-
-}
-
 function endGame() {
     updateScores();
     if (gameEnd) {
-        while (
-            voidScore < playerScore &&
-            playerScore <= 21 &&
-            voidScore <= 21
-        ) {
+    while (
+    voidScore < playerScore &&
+    playerScore <= 21 &&
+    voidScore <= 21
+    ) {
 voidCards.push(nextCard());
 updateScores();
     }
@@ -68,3 +81,5 @@ if (playerScore > 21) {
 
 
 
+
+console.log(cardX);
