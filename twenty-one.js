@@ -16,11 +16,26 @@ function showHide() {
     screen2El.style.display = 'block';
 }
 
+// **** BUTTONS ****
+let hitButton = document.getElementById('hit-button');
+let surrenderButton = document.getElementById('surrender-button');
+
 // **** CONSTANTS ****
 const value = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 const suits = ["spades", "diamonds", "clubs", "hearts"];
 
-//const winCondition = 21; **** LOSE / WIN LOGIC ****
+// **** DECK FUNCTION ****
+function deckCompiler()
+
+
+
+
+
+// **** LOSE / WIN LOGIC ****
+function getScores() {
+
+
+}
 
 function endGame() {
     updateScores();
