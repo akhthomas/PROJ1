@@ -7,21 +7,6 @@ function pause() {
     return audio.paused ? audio.play() : audio.pause();
 };
 
-// **** SCREEN FUNCTION ****
-function showHide() {
-    const screenEl = document.getElementById('screen-1');
-    const screen2El = document.getElementById('screen-2');
-
-    screenEl.style.display = 'none';
-    screen2El.style.display = 'block';
-}
-
-// **** BUTTONS ****
-let hitButton = document.getElementById('hit-button');
-let surrenderButton = document.getElementById('surrender-button');
-let cardX = document.getElementById('card1');
-
-
 // **** DECK FUNCTION ****
 function deckCompiler() {
     const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
@@ -38,16 +23,47 @@ function deckCompiler() {
 return cards;
 }
 
-let deck1 = deckCompiler();
-deck1 = deck1.sort((a, b) => 0.5 - Math.random());
+// **** BUTTONS ****
+let hitButton = document.getElementById('hit-button');
+let surrenderButton = document.getElementById('surrender-button');
+let cardX = document.getElementById('card1');
+let cardY = document.getElementById('card2');
 
-const player = [];
-const dealer = [];
+class Game {
+    state = {
+        deck: deckCompiler().sort((a, b) => 0.5 - Math.random()),
+        player: [],
+        dealer: [],
+    };
 
-const card1 = deck1.pop();
-player.push(card1);
-cardX.innerText = card1.value+card1.suit;
+    screen1ToScreen2Transition() {
+        this.drawPlayerCard();
 
+        const screenEl = document.getElementById('screen-1');
+        const screen2El = document.getElementById('screen-2');
+    
+        screenEl.style.display = 'none';
+        screen2El.style.display = 'block';
+    }
+
+    drawPlayerCard() {
+        const card = this.state.deck.pop();
+        this.state.player.push(card);
+        cardX.innerText = card.value + " " + card.suit;
+    }
+    drawPlayerCard2() {
+        const card = this.state.deck.pop();
+        this.state.player.push(card);
+        card2.innerText = card.value + " " + card.suit;
+    }
+}
+
+const game = new Game();
+
+// **** SCREEN FUNCTION ****
+function showHide() {
+    
+}
 
 // **** LOSE / WIN LOGIC ****
 function endGame() {
