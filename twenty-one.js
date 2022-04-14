@@ -28,6 +28,7 @@ let hitButton = document.getElementById('hit-button');
 let surrenderButton = document.getElementById('surrender-button');
 let cardX = document.getElementById('card1');
 let cardY = document.getElementById('card2');
+let cardZ = document.getElementById('card3');
 
 class Game {
     state = {
@@ -63,6 +64,15 @@ class Game {
             cardY.style.display = 'flex';
         }
     }
+    drawPlayerCard3() {
+        if (!this.state.playerDrawsCard3) {
+            const card = this.state.deck.pop();
+            this.state.player.push(card);
+            cardZ.innerText = card.value + " " + card.suit;
+            this.state.playerDrawsCard3 = true;
+            cardZ.style.display = 'flex';
+        }
+    }
     drawOptions() {
         if (!this.state.drawOptions) {
             const options = document.getElementById('buttonspace2');
@@ -80,12 +90,24 @@ class Game {
             const voidCard2 = document.getElementById('cardv2');
             const enemyHand = this.state.deck.pop();
             this.state.dealer.push(enemyHand);
-            voidCard2.innerText = card.value + " " + card.suit;
+            voidCard2.innerText = enemyHand.value + " " + enemyHand.suit;
 
             
 
         }
-    }   
+    }  
+
+    isPlayerWinning() {
+        let totalValue = 0;
+        this.state.player.forEach(p => {
+            totalValue = totalValue + p.value;
+        });
+        if (totalValue === 21) {
+            // Do something
+        } else {
+            // Do something else
+        }
+    }
 }
 
 const game = new Game();
