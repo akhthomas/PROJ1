@@ -34,6 +34,7 @@ class Game {
         deck: deckCompiler().sort((a, b) => 0.5 - Math.random()),
         player: [],
         dealer: [],
+        playerDrawsCard2 : false
     };
 
     screen1ToScreen2Transition() {
@@ -44,6 +45,7 @@ class Game {
     
         screenEl.style.display = 'none';
         screen2El.style.display = 'block';
+        
     }
 
     drawPlayerCard() {
@@ -52,10 +54,20 @@ class Game {
         cardX.innerText = card.value + " " + card.suit;
     }
     drawPlayerCard2() {
-        const card = this.state.deck.pop();
-        this.state.player.push(card);
-        card2.innerText = card.value + " " + card.suit;
+        if (!this.state.playerDrawsCard2) {
+            const card = this.state.deck.pop();
+            this.state.player.push(card);
+            cardY.innerText = card.value + " " + card.suit;
+            this.state.playerDrawsCard2 = true;
+            cardY.style.display = 'flex';
+        }
     }
+    drawOptions() {
+        if (!this.state.drawOptions) {
+            const option = document.getElementById('button-space-2');
+            buttonspace2.style.display = 'block';
+        }
+    }   
 }
 
 const game = new Game();
