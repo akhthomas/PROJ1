@@ -36,15 +36,18 @@
 <div id="screen-2">
   <div class="flex">
     <div class="card" id="card1" onClick="game.drawPlayerCard2()"></div>
-    <div class="card" id="card2" onClick="game.drawPlayerCard3()"></div>
+    <div class="card" id="card2" onClick="game.drawOptions()"></div>
+    <div class="card" id="card3"></div>
   </div>
   <div id="buttonspace2">
-    <button>HIT</button>
-    <button>SURRENDER</button>
+    <button onClick="game.drawPlayerCard3()">HIT</button>
+    <button onClick="game.playerSurrenders()">SURRENDER</button>
   </div>
 <div id="voidspace">
   <div class="card" id="cardv1" onClick=""></div>
   <div class="card" id="cardv2" onClick=""></div>
+  <div class="card" id="cardv3"></div>
+
 </div>
 </div>
   <div class="music">

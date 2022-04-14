@@ -36,7 +36,7 @@ class Game {
         player: [],
         dealer: [],
         drawOptions : false,
-        playerDrawsCard2 : false
+        playerDrawsCard2 : false,
     };
 
     screen1ToScreen2Transition() {
@@ -71,6 +71,11 @@ class Game {
             cardZ.innerText = card.value + " " + card.suit;
             this.state.playerDrawsCard3 = true;
             cardZ.style.display = 'flex';
+
+            const voidCard3 = document.getElementById('cardv3');
+            const enemyHand2 = this.state.deck.pop();
+            this.state.dealer.push(enemyHand2);
+            voidCard3.innerText = enemyHand2.value + " " + enemyHand2.suit;
         }
     }
     drawOptions() {
@@ -91,11 +96,20 @@ class Game {
             const enemyHand = this.state.deck.pop();
             this.state.dealer.push(enemyHand);
             voidCard2.innerText = enemyHand.value + " " + enemyHand.suit;
-
-            
-
         }
-    }  
+    }
+
+    playerSurrenders() {
+        if (!this.state.playerSurrenders) {
+        const voidCard3 = document.getElementById('cardv3');
+        voidCard3.style.display = 'block';
+        this.state.playerSurrenders = true;
+
+        const enemyHand2 = this.state.deck.pop();
+        this.state.dealer.push(enemyHand2);
+        voidCard3.innerText = enemyHand2.value + " " + enemyHand2.suit;   
+    }
+}
 
     isPlayerWinning() {
         let totalValue = 0;
@@ -150,4 +164,3 @@ if (playerScore > 21) {
 
 
 
-console.log(cardX);

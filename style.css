@@ -133,6 +133,10 @@ button {
     display: none;
 }
 
+#card3 {
+    display: none;
+}
+
 #voidspace {
     display: none;
     margin-left: 42.3%;
