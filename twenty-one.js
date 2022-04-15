@@ -70,6 +70,8 @@ class Game {
         dealer: [],
         drawOptions : false,
         playerDrawsCard2 : false,
+        playerSurrenders : false,
+        playerDrawsCard3 : false
     };
 
     screen1ToScreen2Transition() {
@@ -96,8 +98,7 @@ class Game {
             this.state.playerDrawsCard2 = true;
             cardY.style.display = 'flex'; 
         if (this.getPlayerScore() === 21) {
-            console.log("endGame");
-            // return endGame 
+            this.playerWins();
         }
     } 
 }
@@ -110,7 +111,7 @@ class Game {
             cardZ.style.display = 'flex'; 
 
         if (this.getPlayerScore() > 21) {
-            console.log("endGame");
+            this.playerLoses();
         } else { 
             this.playerSurrenders();
         }
@@ -151,7 +152,7 @@ class Game {
         voidCard3.style.display = 'block';
         this.state.playerSurrenders = true;
 
-        if (this.getDealerScore() < 16) {
+        if (this.getDealerScore() < 16 && this.getPlayerScore() <= 21)  {
         const enemyHand2 = this.state.deck.pop();
         this.state.dealer.push(enemyHand2);
         voidCard3.innerHTML = enemyHand2.value + " " + enemyHand2.suit;   
@@ -205,14 +206,21 @@ getDealerScore() {
     });
     return totalValue;
 }
+playerWins() {
+    let prompts = document.getElementById("prompts");
+    prompts.innerText += "You have escaped the Void.";
+    this.state.drawOptions = true;
+    this.state.playerDrawsCard2 = true;
+    this.state.playerSurrenders = true;
+    this.state.playerDrawsCard3 = true;
+    }
+    playerLoses() {
+        let prompts = document.getElementById("prompts");
+        prompts.innerText += "You are stuck here forever now.";
+        this.state.drawOptions = true;
+        this.state.playerDrawsCard2 = true;
+        this.state.playerSurrenders = true;
+        this.state.playerDrawsCard3 = true; 
+}
 }
 const game = new Game();
-
-
-
-
-/*if (totalValue === 21) {
-    textArea.innerText += "You are stuck here forever now."
-} else {
-    ;textArea.innerText += "You have escaped the Void.";
-}*/
