@@ -16,7 +16,7 @@ const suitIconMap = {
 
 // **** DECK FUNCTION ****
 function deckCompiler() {
-    const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+    const values = ["K", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "A"];
     const suits = ["&spades;", "&diams;", "&clubs;", "&hearts;"];
 
     const cards = [];
@@ -94,9 +94,13 @@ class Game {
             this.state.player.push(card);
             cardY.innerHTML = card.value + " " + card.suit;
             this.state.playerDrawsCard2 = true;
-            cardY.style.display = 'flex';
+            cardY.style.display = 'flex'; 
+        if (this.getPlayerScore() === 21) {
+            console.log("endGame");
+            // return endGame 
         }
-    }
+    } 
+}
     drawPlayerCard3() {
         if (!this.state.playerDrawsCard3 && !this.state.playerSurrenders) {
             const card = this.state.deck.pop();
@@ -129,6 +133,7 @@ class Game {
             const enemyHand = this.state.deck.pop();
             this.state.dealer.push(enemyHand);
             voidCard2.innerHTML = enemyHand.value + " " + enemyHand.suit;
+            console.log(this.getDealerScore());
         }
     }
 
@@ -138,9 +143,13 @@ class Game {
         voidCard3.style.display = 'block';
         this.state.playerSurrenders = true;
 
+        if (this.getDealerScore() < 16) {
         const enemyHand2 = this.state.deck.pop();
         this.state.dealer.push(enemyHand2);
         voidCard3.innerHTML = enemyHand2.value + " " + enemyHand2.suit;   
+        } else { console.log("gameEnd");
+            //ENDGAME
+        }
     }
 }
 
@@ -162,7 +171,29 @@ getPlayerScore() {
                 cardNumericValue = parseInt(p.value);
                 break;
         }
-        totalValue = totalValue + cardNumericValue(p.value);
+        totalValue = totalValue + cardNumericValue;
+    });
+    return totalValue;
+}
+getDealerScore() {
+    let totalValue = 0;
+    this.state.dealer.forEach(p => {
+    let cardNumericValue = 0;
+        switch (p.value) {
+            case "A" : 
+                cardNumericValue = totalValue >= 11 ? 1 : 11;
+                break;
+            case "J" : 
+            case "Q" :
+            case "K" :
+                cardNumericValue = 10;
+                break;
+
+            default : 
+                cardNumericValue = parseInt(p.value);
+                break;
+        }
+        totalValue = totalValue + cardNumericValue;
     });
     return totalValue;
 }
