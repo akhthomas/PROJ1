@@ -30,6 +30,8 @@ let cardX = document.getElementById('card1');
 let cardY = document.getElementById('card2');
 let cardZ = document.getElementById('card3');
 
+
+// **** GAME STATE ****
 class Game {
     state = {
         deck: deckCompiler().sort((a, b) => 0.5 - Math.random()),
@@ -110,29 +112,44 @@ class Game {
         voidCard3.innerText = enemyHand2.value + " " + enemyHand2.suit;   
     }
 }
+}
 
-    isPlayerWinning() {
+    function endGame() {
         let totalValue = 0;
         this.state.player.forEach(p => {
             totalValue = totalValue + p.value;
         });
         if (totalValue === 21) {
-            // Do something
+            textArea.innerText += "You have escaped the Void.";
         } else {
-            // Do something else
+            textArea.innerText += "You are stuck here forever now.";
         }
     }
-}
 
 const game = new Game();
 
 // **** SCREEN FUNCTION ****
-function showHide() {
+/*function showHide() {
     
-}
+}*/
 
 // **** LOSE / WIN LOGIC ****
-function endGame() {
+function showPrompt(playerSurrenders, ) {
+if (gameOver) {
+    if (playerWins) {
+        textArea.innerText += "You have escaped the Void.";
+    } else {
+        textArea.innerText += "You are stuck here forever now.";
+    }
+    restartButton.style.display = "inline";
+    hitButton.style.display = "none";
+    surrenderButton.style.display = "none";
+} 
+
+
+
+
+function endGame(showPrompt) {
     updateScores();
     if (gameEnd) {
     while (
@@ -160,7 +177,4 @@ if (playerScore > 21) {
 
     }
 }
-
-
-
-
+}
