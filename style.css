@@ -2,7 +2,7 @@
 
 /* Custom fonts */
 @import url('https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
 
 
 body {
@@ -23,12 +23,12 @@ body {
 
 .quote {
     font-family: Helvetica Neue;
-    font-size: 13px;
+    font-size: 15px;
 	letter-spacing: 1px;
 	font-weight: lighter;
     color: #fff;
 	padding-top: 50px;
-	margin-left:40%;
+	margin-left:39%;
 	top: 150px;
 	background-color: transparent;
 	position: absolute;
@@ -39,14 +39,14 @@ body {
 .quote2 {
 	
 	font-family: Helvetica Neue;
-    font-size: 13px;
+    font-size: 15px;
 	letter-spacing: 1px;
     text-align: center;
 	font-weight: lighter;
     color: #fff;
 	padding-top: 55px;
-	margin-left:40%;
-	top: 159px;
+	margin-left:39%;
+	top: 161px;
 	background-color: transparent;
 	position: absolute;	
 		
@@ -114,7 +114,6 @@ button {
     display: flex;
     justify-content: center;
     
-
 }
 
 .card {
@@ -126,7 +125,10 @@ button {
     border: 1px solid #fff;
     background-color: transparent;
     color: #fff;
-
+    font-family:'Libre Baskerville', serif;
+    font-size: 30px;
+    padding: 5px;
+    text-align:center;
 }
 
 #card2 {
@@ -141,8 +143,15 @@ button {
     display: none;
     margin-left: 42.3%;
     margin-top: -10%;
-
 }
+
 #prompts {
     color: #fff;
+    font-family:'Hina Mincho', serif;
+    font-style:italic;
+	letter-spacing: 2px;
+    font-size: 15px;
+    margin-left: 47%;
+    margin-top: 2%;
+
 }
