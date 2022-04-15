@@ -5,7 +5,7 @@ presenting you with an opportunity...</samp>
 
 ( This game follows the basic rules of Black Jack and is not the casino version. )<br><br>
 
-## [**LAUNCH GAME**](https://app.netlify.com/sites/iridescent-nougat-64a943/overview)<br><br>
+## [**LAUNCH GAME**](https://iridescent-nougat-64a943.netlify.app/)<br><br>
 
 ## ***important links :*** 
 ***
