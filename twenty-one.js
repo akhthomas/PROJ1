@@ -62,6 +62,10 @@ class Game {
         
     }
 
+    tryAgain() {
+        window.location.reload();
+    }
+
     drawPlayerCard() {
         const card = this.state.deck.pop();
         this.state.player.push(card);
