@@ -7,10 +7,17 @@ function pause() {
     return audio.paused ? audio.play() : audio.pause();
 };
 
+const suitIconMap = {
+    hearts: '&hearts;',
+    spades: '&spades;',
+    diamonds: '&diams;',
+    clubs: '&clubs',
+};
+
 // **** DECK FUNCTION ****
 function deckCompiler() {
     const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-    const suits = ["spades", "diamonds", "clubs", "hearts"];
+    const suits = ["&spades;", "&diams;", "&clubs;", "&hearts;"];
 
     const cards = [];
     for (let s = 0; s < suits.length; s++) {
@@ -18,6 +25,29 @@ function deckCompiler() {
     const value = values[v];
     const suit = suits[s];
     cards.push({ value, suit });
+
+    // let card = document.createElement("card");
+	// 	let icon = '';
+	// 	if (cards[i].suit == 'hearts') {
+    //         icon='&hearts';
+    //     }
+		
+	// 	else if (cards[i].suit == 'spades') {
+    //         icon = '&spades';
+    //     }
+		
+	// 	else if (cards[i].suit == 'diamonds') {
+    //         icon = '&diams';
+    //     }
+		
+	// 	else if (cards[i].suit == 'clubs') {
+    //         icon = '&clubs';
+    //     }
+		
+
+	// 	card.innerHTML = deck[i].Value + '' + icon;
+	// 	card.className = 'card';
+	// document.getElementById("deck").appendChild(card);
     }
 }
 return cards;
@@ -32,6 +62,7 @@ let cardZ = document.getElementById('card3');
 
 
 // **** GAME STATE ****
+
 class Game {
     state = {
         deck: deckCompiler().sort((a, b) => 0.5 - Math.random()),
@@ -55,29 +86,29 @@ class Game {
     drawPlayerCard() {
         const card = this.state.deck.pop();
         this.state.player.push(card);
-        cardX.innerText = card.value + " " + card.suit;
+        cardX.innerHTML = card.value + " " + card.suit;
     }
     drawPlayerCard2() {
         if (!this.state.playerDrawsCard2) {
             const card = this.state.deck.pop();
             this.state.player.push(card);
-            cardY.innerText = card.value + " " + card.suit;
+            cardY.innerHTML = card.value + " " + card.suit;
             this.state.playerDrawsCard2 = true;
             cardY.style.display = 'flex';
         }
     }
     drawPlayerCard3() {
-        if (!this.state.playerDrawsCard3) {
+        if (!this.state.playerDrawsCard3 && !this.state.playerSurrenders) {
             const card = this.state.deck.pop();
             this.state.player.push(card);
-            cardZ.innerText = card.value + " " + card.suit;
+            cardZ.innerHTML = card.value + " " + card.suit;
             this.state.playerDrawsCard3 = true;
             cardZ.style.display = 'flex';
 
-            const voidCard3 = document.getElementById('cardv3');
+            /*const voidCard3 = document.getElementById('cardv3');
             const enemyHand2 = this.state.deck.pop();
             this.state.dealer.push(enemyHand2);
-            voidCard3.innerText = enemyHand2.value + " " + enemyHand2.suit;
+            voidCard3.innerHTML = enemyHand2.value + " " + enemyHand2.suit;*/
         }
     }
     drawOptions() {
@@ -92,12 +123,12 @@ class Game {
             const voidCard1 = document.getElementById('cardv1');
             const card = this.state.deck.pop();
             this.state.dealer.push(card);
-            voidCard1.innerText = card.value + " " + card.suit;
+            voidCard1.innerHTML = card.value + " " + card.suit;
 
             const voidCard2 = document.getElementById('cardv2');
             const enemyHand = this.state.deck.pop();
             this.state.dealer.push(enemyHand);
-            voidCard2.innerText = enemyHand.value + " " + enemyHand.suit;
+            voidCard2.innerHTML = enemyHand.value + " " + enemyHand.suit;
         }
     }
 
@@ -109,72 +140,40 @@ class Game {
 
         const enemyHand2 = this.state.deck.pop();
         this.state.dealer.push(enemyHand2);
-        voidCard3.innerText = enemyHand2.value + " " + enemyHand2.suit;   
+        voidCard3.innerHTML = enemyHand2.value + " " + enemyHand2.suit;   
     }
 }
-}
 
-    function endGame() {
-        let totalValue = 0;
-        this.state.player.forEach(p => {
-            totalValue = totalValue + p.value;
-        });
-        if (totalValue === 21) {
-            textArea.innerText += "You have escaped the Void.";
-        } else {
-            textArea.innerText += "You are stuck here forever now.";
+getPlayerScore() {
+    let totalValue = 0;
+    this.state.player.forEach(p => {
+    let cardNumericValue = 0;
+        switch (p.value) {
+            case "A" : 
+                cardNumericValue = totalValue >= 11 ? 1 : 11;
+                break;
+            case "J" : 
+            case "Q" :
+            case "K" :
+                cardNumericValue = 10;
+                break;
+
+            default : 
+                cardNumericValue = parseInt(p.value);
+                break;
         }
-    }
-
+        totalValue = totalValue + cardNumericValue(p.value);
+    });
+    return totalValue;
+}
+}
 const game = new Game();
 
-// **** SCREEN FUNCTION ****
-/*function showHide() {
-    
+
+
+
+/*if (totalValue === 21) {
+    textArea.innerText += "You are stuck here forever now."
+} else {
+    ;textArea.innerText += "You have escaped the Void.";
 }*/
-
-// **** LOSE / WIN LOGIC ****
-function showPrompt(playerSurrenders, ) {
-if (gameOver) {
-    if (playerWins) {
-        textArea.innerText += "You have escaped the Void.";
-    } else {
-        textArea.innerText += "You are stuck here forever now.";
-    }
-    restartButton.style.display = "inline";
-    hitButton.style.display = "none";
-    surrenderButton.style.display = "none";
-} 
-
-
-
-
-function endGame(showPrompt) {
-    updateScores();
-    if (gameEnd) {
-    while (
-    voidScore < playerScore &&
-    playerScore <= 21 &&
-    voidScore <= 21
-    ) {
-voidCards.push(nextCard());
-updateScores();
-    }
-}
-
-if (playerScore > 21) {
-    playerWins = false;
-    gameEnd = true;
-}   else if (voidScore > 21) {
-    playerWins = true;
-    gameEnd = true; 
-}   else if (gameEnd) {
-    if (playerScore > voidScore) {
-        playerWins = true; 
-    } else { 
-        playerWins = false;
-    }
-
-    }
-}
-}
