@@ -16,7 +16,7 @@ const suitIconMap = {
 
 // **** DECK FUNCTION ****
 function deckCompiler() {
-    const values = ["K", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "A"];
+    const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
     const suits = ["&spades;", "&diams;", "&clubs;", "&hearts;"];
 
     const cards = [];
@@ -25,29 +25,6 @@ function deckCompiler() {
     const value = values[v];
     const suit = suits[s];
     cards.push({ value, suit });
-
-    // let card = document.createElement("card");
-	// 	let icon = '';
-	// 	if (cards[i].suit == 'hearts') {
-    //         icon='&hearts';
-    //     }
-		
-	// 	else if (cards[i].suit == 'spades') {
-    //         icon = '&spades';
-    //     }
-		
-	// 	else if (cards[i].suit == 'diamonds') {
-    //         icon = '&diams';
-    //     }
-		
-	// 	else if (cards[i].suit == 'clubs') {
-    //         icon = '&clubs';
-    //     }
-		
-
-	// 	card.innerHTML = deck[i].Value + '' + icon;
-	// 	card.className = 'card';
-	// document.getElementById("deck").appendChild(card);
     }
 }
 return cards;
@@ -65,7 +42,8 @@ let cardZ = document.getElementById('card3');
 
 class Game {
     state = {
-        deck: deckCompiler().sort((a, b) => 0.5 - Math.random()),
+        //deck: deckCompiler().sort((a, b) => 0.5 - Math.random()),
+        deck: [{value : "Q", suit : "&clubs;"}, {value : "2", suit : "&clubs;"}, {value : "4", suit : "&clubs;"}, {value : "J", suit : "&clubs;"}, {value : "4", suit : "&clubs;"}, {value : "6", suit : "&clubs;"}],
         player: [],
         dealer: [],
         drawOptions : false,
@@ -115,13 +93,6 @@ class Game {
         } else { 
             this.playerSurrenders();
         }
-            // return endGame 
-
-
-            /*const voidCard3 = document.getElementById('cardv3');
-            const enemyHand2 = this.state.deck.pop();
-            this.state.dealer.push(enemyHand2);
-            voidCard3.innerHTML = enemyHand2.value + " " + enemyHand2.suit;*/
         }
     }
     drawOptions() {
@@ -156,9 +127,11 @@ class Game {
         const enemyHand2 = this.state.deck.pop();
         this.state.dealer.push(enemyHand2);
         voidCard3.innerHTML = enemyHand2.value + " " + enemyHand2.suit;   
-        } else { console.log("gameEnd");
-            //ENDGAME
-        }
+        } 
+        if (this.getPlayerScore() > this.getDealerScore()) {
+        this.playerWins();
+        } else { this.playerLoses();
+    }
     }
 }
 
