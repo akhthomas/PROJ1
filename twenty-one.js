@@ -107,7 +107,15 @@ class Game {
             this.state.player.push(card);
             cardZ.innerHTML = card.value + " " + card.suit;
             this.state.playerDrawsCard3 = true;
-            cardZ.style.display = 'flex';
+            cardZ.style.display = 'flex'; 
+
+        if (this.getPlayerScore() > 21) {
+            console.log("endGame");
+        } else { 
+            this.playerSurrenders();
+        }
+            // return endGame 
+
 
             /*const voidCard3 = document.getElementById('cardv3');
             const enemyHand2 = this.state.deck.pop();
