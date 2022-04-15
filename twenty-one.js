@@ -7,6 +7,8 @@ function pause() {
     return audio.paused ? audio.play() : audio.pause();
 };
 
+
+// **** DECK FUNCTION ****
 const suitIconMap = {
     hearts: '&hearts;',
     spades: '&spades;',
@@ -14,7 +16,6 @@ const suitIconMap = {
     clubs: '&clubs',
 };
 
-// **** DECK FUNCTION ****
 function deckCompiler() {
     const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
     const suits = ["&spades;", "&diams;", "&clubs;", "&hearts;"];
