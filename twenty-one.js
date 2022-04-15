@@ -42,8 +42,7 @@ let cardZ = document.getElementById('card3');
 
 class Game {
     state = {
-        //deck: deckCompiler().sort((a, b) => 0.5 - Math.random()),
-        deck: [{value : "Q", suit : "&clubs;"}, {value : "2", suit : "&clubs;"}, {value : "4", suit : "&clubs;"}, {value : "J", suit : "&clubs;"}, {value : "4", suit : "&clubs;"}, {value : "6", suit : "&clubs;"}],
+        deck: deckCompiler().sort((a, b) => 0.5 - Math.random()),
         player: [],
         dealer: [],
         drawOptions : false,
@@ -113,7 +112,6 @@ class Game {
             const enemyHand = this.state.deck.pop();
             this.state.dealer.push(enemyHand);
             voidCard2.innerHTML = enemyHand.value + " " + enemyHand.suit;
-            console.log(this.getDealerScore());
         }
     }
 
@@ -128,10 +126,11 @@ class Game {
         this.state.dealer.push(enemyHand2);
         voidCard3.innerHTML = enemyHand2.value + " " + enemyHand2.suit;   
         } 
-        if (this.getPlayerScore() > this.getDealerScore()) {
-        this.playerWins();
-        } else { this.playerLoses();
-    }
+        if (this.getPlayerScore() > this.getDealerScore() || this.getDealerScore() > 21) {
+            this.playerWins();
+        } else {
+            this.playerLoses();
+        }
     }
 }
 
